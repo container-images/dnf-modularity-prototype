@@ -12,3 +12,7 @@ run:
 push-james:
 		@docker tag flat-modules-dnf jamesantill/flat-modules-dnf
 		@docker push jamesantill/flat-modules-dnf
+
+update:
+		@docker pull baseruntime/baseruntime
+		@make build
