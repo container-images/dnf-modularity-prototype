@@ -1,0 +1,6 @@
+[local-dnf-mod-f26]
+name=Modular F26 DNF (local)
+baseurl=file:///dnf-repo
+enabled=1
+gpgcheck=false
+modules=1

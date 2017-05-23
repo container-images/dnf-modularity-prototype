@@ -1,0 +1,8 @@
+[mod-server-f26]
+name=Modular F26 server
+# https://bugzilla.redhat.com/show_bug.cgi?id=1452392
+# baseurl=https://kojipkgs.stg.fedoraproject.org/compose/branched/jkaluza/latest-Fedora-Modular-26/compose/Server/x86_64/os/
+baseurl=http://kojipkgs.stg.fedoraproject.org/compose/branched/jkaluza/latest-Fedora-Modular-26/compose/Server/x86_64/os/
+enabled=1
+gpgcheck=false
+modules=1

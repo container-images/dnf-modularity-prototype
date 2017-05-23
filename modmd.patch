@@ -1,0 +1,14 @@
+diff -u /usr/lib/python3.6/site-packages/modulemd/__init__.py /usr/lib/python3.6/site-packages/modulemd/__init__.py
+--- /usr/lib/python3.6/site-packages/modulemd/__init__.py	2017-05-22 01:48:19.094431507 +0000
++++ /usr/lib/python3.6/site-packages/modulemd/__init__.py	2017-05-22 01:31:27.552059892 +0000
+@@ -193,6 +193,10 @@
+         """
+         # header
+         if "document" not in d or d["document"] != "modulemd":
++            if "modules" in d:
++                print("JDBG:", len(d['modules']))
++                d = d['modules'][0]
++        if "document" not in d or d["document"] != "modulemd":
+             raise ValueError("The supplied data isn't a valid modulemd document")
+         if "version" not in d:
+             raise ValueError("Document version is required")
