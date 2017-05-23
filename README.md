@@ -1,6 +1,8 @@
 Container, based on baseruntime, that allows you to run the latest modularity
 DNF prototype.
 
+**NOTE** If you add a repo. for a module you need make sure modules=1 is in the .repo file, currently DNF requires this (hoping to get this changed).
+
 Requirements
 ============
 
