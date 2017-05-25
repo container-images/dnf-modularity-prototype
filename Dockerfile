@@ -2,8 +2,11 @@ FROM baseruntime/baseruntime
 
 MAINTAINER "James Antill <james.antill@redhat.com>"
 
+ENV LANG=en_US.utf8 LC_ALL=en_US.UTF-8
+
 # ADD server.repo /etc/yum.repos.d
 RUN echo "modules=1" >> /etc/yum.repos.d/build.repo
+
 ADD _copr_rpmsoftwaremanagement-dnf-nightly.repo /etc/yum.repos.d
 
 RUN mkdir /dnf-repo
