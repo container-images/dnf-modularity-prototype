@@ -14,5 +14,4 @@ push-james:
 		@docker push jamesantill/flat-modules-dnf
 
 update:
-		@docker pull baseruntime/baseruntime
-		@make build
+		@docker build --pull . -t flat-modules-dnf
