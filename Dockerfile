@@ -2,7 +2,8 @@ FROM baseruntime/baseruntime
 
 MAINTAINER "James Antill <james.antill@redhat.com>"
 
-ADD server.repo /etc/yum.repos.d
+# ADD server.repo /etc/yum.repos.d
+RUN echo "modules=1" >> /etc/yum.repos.d/build.repo
 ADD _copr_rpmsoftwaremanagement-dnf-nightly.repo /etc/yum.repos.d
 
 RUN mkdir /dnf-repo
@@ -31,6 +32,9 @@ RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
 ADD modmd.patch /
 RUN microdnf install -y patch && microdnf clean all
 RUN patch -p0 < modmd.patch
+
+# ADD modules /modules
+# ADD local-modules.repo /etc/yum.repos.d
 
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
