@@ -1,0 +1,6 @@
+[Boltron compose]
+name=Boltron compose
+baseurl=https://kojipkgs.fedoraproject.org/compose/latest-Fedora-Modular-26/compose/Server/x86_64/os/
+enabled=1
+gpgcheck=false
+modules=1

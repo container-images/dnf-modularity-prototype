@@ -42,3 +42,4 @@ RUN patch -p0 < modmd.patch
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
 
+COPY ./boltron-compose.repo /etc/yum.repos.d/
