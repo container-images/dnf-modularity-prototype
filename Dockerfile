@@ -9,10 +9,6 @@ RUN echo "modules=1" >> /etc/yum.repos.d/build.repo
 
 ADD _copr_rpmsoftwaremanagement-dnf-nightly.repo /etc/yum.repos.d
 
-RUN mkdir /dnf-repo
-ADD dnf-repo /dnf-repo
-ADD local-dnf.repo /etc/yum.repos.d
-
 RUN microdnf install -y dnf glibc-langpack-en && microdnf clean all
 
 # RUN microdnf install -y git && microdnf clean all
