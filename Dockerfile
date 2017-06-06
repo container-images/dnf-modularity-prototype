@@ -42,3 +42,5 @@ RUN patch -p0 < modmd.patch
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
 
+# nice prompt
+RUN cp -a /etc/skel/.bashrc /root/.bashrc
