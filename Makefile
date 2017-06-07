@@ -17,6 +17,8 @@ push-james:
 
 update:
 		@docker build --pull . -t flat-modules-dnf
+update-force:
+		@docker build --pull --no-cache . -t flat-modules-dnf
 
 run-systemd:
 	docker start $(SYSTEMD_CONTAINER_NAME) || \
