@@ -15,6 +15,7 @@ RUN dnf install -y https://kojipkgs.fedoraproject.org//packages/modulemd/1.2.0/1
 
 RUN echo "" >> /etc/yum.repos.d/_copr_rpmsoftwaremanagement-dnf-nightly.repo
 RUN echo "exclude = dnf dnf-automatic dnf-conf dnf-yum python3-dnf" >> /etc/yum.repos.d/_copr_rpmsoftwaremanagement-dnf-nightly.repo
+RUN echo "enabled=0" >> /etc/yum.repos.d/_copr_rpmsoftwaremanagement-dnf-nightly.repo
 ADD _copr_mhatina-dnf.repo /etc/yum.repos.d
 
 RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
