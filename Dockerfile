@@ -31,3 +31,6 @@ RUN cp -a /etc/skel/.bashrc /root/.bashrc
 
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
+
+# dnf install nodejs ... currently fails with depsolving errors without this:
+RUN echo "exclude = python2-dnf,python2-hawkey,python2-dnf-plugin-kickstart,package,python2-dnf-plugin-snapper,python2-dnf-plugin-system-upgrade,python2-dnf-plugin-tracer,python2-dnf-plugins-core" >> /etc/dnf/dnf.conf
