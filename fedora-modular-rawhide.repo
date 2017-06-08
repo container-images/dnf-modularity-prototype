@@ -1,0 +1,12 @@
+[fedora-modular-rawhide]
+name=Fedora Modular rawhide $releasever - $basearch
+failovermethod=priority
+baseurl=https://kojipkgs.fedoraproject.org/compose/latest-Fedora-Modular-Rawhide/compose/Server/$basearch/os
+#metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-modularity
+skip_if_unavailable=False
+modules=1
+enabled=0

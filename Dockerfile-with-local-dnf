@@ -26,6 +26,8 @@ ADD _copr_mhatina-dnf.repo /etc/yum.repos.d
 # RUN cp -a /etc/dnf/dnf.conf.rpmnew /etc/dnf/dnf.conf
 RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
 
+ADD fedora-modular-rawhide.repo /etc/yum.repos.d
+
 ADD modmd.patch /
 RUN microdnf install -y patch && microdnf clean all
 RUN patch -p0 < modmd.patch
