@@ -1,3 +1,4 @@
+IMAGE_NAME := jamesantill/flat-modules-dnf
 SYSTEMD_CONTAINER_NAME := boltron
 DOCKER_FNAME := Dockerfile
 # DOCKER_FNAME := Dockerfile-with-local-dnf
@@ -11,19 +12,18 @@ help:
 		@echo "make push-james - Push the new build to jamesantill/flat-modules-dnf."
 
 build:
-		@docker build --file=$(DOCKER_FNAME) . -t flat-modules-dnf
+		@docker build --file=$(DOCKER_FNAME) . -t $(IMAGE_NAME)
 
 run:
-		@docker run --rm -it flat-modules-dnf bash
+		@docker run --rm -it $(IMAGE_NAME) bash
 
 push-james:
-		@docker tag flat-modules-dnf jamesantill/flat-modules-dnf
-		@docker push jamesantill/flat-modules-dnf
+		@docker push $(IMAGE_NAME)
 
 update:
-		@docker build --file=$(DOCKER_FNAME) --pull . -t flat-modules-dnf
+		@docker build --file=$(DOCKER_FNAME) --pull . -t $(IMAGE_NAME)
 update-force:
-		@docker build --file=$(DOCKER_FNAME) --pull --no-cache . -t flat-modules-dnf
+		@docker build --file=$(DOCKER_FNAME) --pull --no-cache . -t $(IMAGE_NAME)
 
 run-systemd:
 	docker start $(SYSTEMD_CONTAINER_NAME) || \
@@ -34,6 +34,6 @@ run-systemd:
 		--security-opt=seccomp:unconfined \
 		-v /sys/fs/cgroup/systemd:/sys/fs/cgroup/systemd \
 		--name $(SYSTEMD_CONTAINER_NAME) \
-		flat-modules-dnf /sbin/init
+		$(IMAGE_NAME) /sbin/init
 	@echo -e "\nContainer '$(SYSTEMD_CONTAINER_NAME)' with systemd is running.\n"
 	docker exec -ti $(SYSTEMD_CONTAINER_NAME) bash
