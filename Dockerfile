@@ -19,6 +19,7 @@ RUN echo "enabled=0" >> /etc/yum.repos.d/_copr_rpmsoftwaremanagement-dnf-nightly
 ADD _copr_mhatina-dnf.repo /etc/yum.repos.d
 
 RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
+RUN dnf distro-sync -y && dnf clean all
 
 ADD fedora-modular-rawhide.repo /etc/yum.repos.d
 
