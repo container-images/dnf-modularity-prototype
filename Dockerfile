@@ -22,6 +22,7 @@ RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
 RUN dnf distro-sync -y && dnf clean all
 
 ADD fedora-modular-rawhide.repo /etc/yum.repos.d
+ADD fedora-modular-nodejs.repo /etc/yum.repos.d
 
 # Get rid of this from the pure container?
 ADD modmd.patch /

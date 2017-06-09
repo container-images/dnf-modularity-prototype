@@ -9,4 +9,4 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-modularity
 skip_if_unavailable=False
 modules=1
-enabled=0
+enabled=1
