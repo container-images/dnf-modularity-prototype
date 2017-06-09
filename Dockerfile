@@ -35,4 +35,6 @@ ADD rawhide.repo /etc/yum.repos.d
 
 # dnf install nodejs/httpd/nginx/etc. ... try to install random packages
 # on newer versions:
-RUN dnf downgrade -y dnf-2.5.0-2.git.45.69a8b05.fc26 && dnf clean all
+# RUN dnf downgrade -y dnf-2.5.0-2.git.45.69a8b05.fc26 && dnf clean all
+# -62 seems to work now.
+# RUN dnf downgrade -y dnf-2.5.0-2.git.62.7e0873e.fc26 && dnf clean all
