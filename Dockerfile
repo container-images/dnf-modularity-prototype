@@ -39,3 +39,16 @@ ADD rawhide.repo /etc/yum.repos.d
 # RUN dnf downgrade -y dnf-2.5.0-2.git.45.69a8b05.fc26 && dnf clean all
 # -62 seems to work now.
 # RUN dnf downgrade -y dnf-2.5.0-2.git.62.7e0873e.fc26 && dnf clean all
+
+#LABEL RUN /usr/bin/docker run -d --cap-add=SYS_TIME ntpd
+
+CMD ['/bin/bash']
+
+LABEL RUN "/usr/bin/docker run -e container=docker -d" \
+		'-v $PWD/machine-id:/etc/machine-id:Z' \
+		'--stop-signal="SIGRTMIN+3"' \
+		"--tmpfs /tmp --tmpfs /run" \
+		"--security-opt=seccomp:unconfined" \
+		"-v /sys/fs/cgroup/systemd:/sys/fs/cgroup/systemd" \
+		"--name NAME" \
+		"IMAGE /sbin/init"

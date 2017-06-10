@@ -10,6 +10,10 @@ help:
 		@echo "make run - Run the new image with bash."
 		@echo "make run - Run the new image with systemd."
 		@echo "make push-james - Push the new build to jamesantill/flat-modules-dnf."
+		@echo "make run-systemd - Enables systemd in the container, relies on atomic-cli." \
+			"You may need 'setsebool -P container_manage_cgroup 1' in order to make systemd work"
+		@echo "make old-run-systemd - Enables systemd in the container." \
+			"You may need 'setsebool -P container_manage_cgroup 1' in order to make systemd work"
 
 build:
 		@docker build --file=$(DOCKER_FNAME) . -t $(IMAGE_NAME)
@@ -26,6 +30,12 @@ update-force:
 		@docker build --file=$(DOCKER_FNAME) --pull --no-cache . -t $(IMAGE_NAME)
 
 run-systemd:
+	docker start $(SYSTEMD_CONTAINER_NAME) || \
+	atomic run -n $(SYSTEMD_CONTAINER_NAME) $(IMAGE_NAME)
+	@echo -e "\nContainer '$(SYSTEMD_CONTAINER_NAME)' with systemd is running.\n"
+	docker exec -ti $(SYSTEMD_CONTAINER_NAME) bash
+
+old-run-systemd:
 	docker start $(SYSTEMD_CONTAINER_NAME) || \
 	docker run -e container=docker -d \
 		-v $(CURDIR)/machine-id:/etc/machine-id:Z \
