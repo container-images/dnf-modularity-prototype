@@ -8,7 +8,6 @@ help:
 		@echo "make update - Build a new docker image, updating baseruntime."
 		@echo "make update-force - Build a new docker image, from scratch."
 		@echo "make run - Run the new image with bash."
-		@echo "make run - Run the new image with systemd."
 		@echo "make push-james - Push the new build to jamesantill/flat-modules-dnf."
 		@echo "make run-systemd - Enables systemd in the container, relies on atomic-cli." \
 			"You may need 'setsebool -P container_manage_cgroup 1' in order to make systemd work"

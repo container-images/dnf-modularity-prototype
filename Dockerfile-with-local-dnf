@@ -50,3 +50,15 @@ RUN cp -a /etc/skel/.bashrc /root/.bashrc
 
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
+
+CMD ['/bin/bash']
+
+LABEL RUN "/usr/bin/docker run -e container=docker -d" \
+               '-v $PWD/machine-id:/etc/machine-id:Z' \
+               '--stop-signal="SIGRTMIN+3"' \
+               "--tmpfs /tmp --tmpfs /run" \
+               "--security-opt=seccomp:unconfined" \
+               "-v /sys/fs/cgroup/systemd:/sys/fs/cgroup/systemd" \
+               "--name NAME" \
+               "IMAGE /sbin/init"
+
