@@ -1,0 +1,6 @@
+[fedora-modular-nodejs]
+name = ttomecek modular nodejs (f26 update)
+baseurl=https://ttomecek.fedorapeople.org/modular-nodejs-6-10-2/
+gpgcheck=0
+modules=1
+enabled=1
