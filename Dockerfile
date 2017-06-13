@@ -35,11 +35,12 @@ RUN cp -a /etc/skel/.bashrc /root/.bashrc
 # For debugging... (disabled by default)
 ADD rawhide.repo /etc/yum.repos.d
 
-# dnf install nodejs/httpd/nginx/etc. ... try to install random packages
-# on newer versions:
-# RUN dnf downgrade -y dnf-2.5.0-2.git.45.69a8b05.fc26 && dnf clean all
-# -62 seems to work now.
-# RUN dnf downgrade -y dnf-2.5.0-2.git.62.7e0873e.fc26 && dnf clean all
+#hacking in older version of nodejs to demonstrate updates
+RUN dnf -y module enable nodejs-f26 && \
+    sed -i 's/version =/version =20170212165050/g' /etc/dnf/modules.d/nodejs.module && \
+    sed -i 's/profiles =/profiles =default/g' /etc/dnf/modules.d/nodejs.module && \
+    dnf -y install --rpm https://ttomecek.fedorapeople.org/modular-nodejs-6-10-2/nodejs-6.10.2-3.module_52f77d55.x86_64.rpm && \
+    dnf -y install --rpm https://ttomecek.fedorapeople.org/modular-nodejs-6-10-2/npm-3.10.10-1.6.10.2.3.module_52f77d55.x86_64.rpm
 
 CMD ['/bin/bash']
 
@@ -51,3 +52,5 @@ LABEL RUN "/usr/bin/docker run -e container=docker -d" \
 		"-v /sys/fs/cgroup/systemd:/sys/fs/cgroup/systemd" \
 		"--name NAME" \
 		"IMAGE /sbin/init"
+
+
