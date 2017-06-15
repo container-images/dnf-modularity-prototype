@@ -1,4 +1,4 @@
-[fedora-modular-nodejs]
+[fedora-compat-nodejs]
 name = ttomecek modular nodejs (f26 update), converted to compat.
 baseurl=http://modularity.fedorainfracloud.org/modularity/compat/fedora-modular-nodejs/
 gpgcheck=0
