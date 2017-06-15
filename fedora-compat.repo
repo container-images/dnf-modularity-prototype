@@ -1,0 +1,12 @@
+[fedora-compat]
+name=Fedora COMPAT $releasever - $basearch
+failovermethod=priority
+baseurl=http://modularity.fedorainfracloud.org/modularity/compat/fedora-modular/
+#metadata_expire=7d
+repo_gpgcheck=0
+type=rpm
+gpgcheck=0
+# gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-modularity
+skip_if_unavailable=False
+modules=1
+enabled=0

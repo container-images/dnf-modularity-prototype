@@ -31,6 +31,10 @@ RUN dnf distro-sync -y && dnf clean all
 ADD fedora-modular-rawhide.repo /etc/yum.repos.d
 ADD fedora-modular-nodejs.repo /etc/yum.repos.d
 
+ADD fedora-compat.repo /etc/yum.repos.d
+ADD fedora-compat-rawhide.repo /etc/yum.repos.d
+ADD fedora-compat-nodejs.repo /etc/yum.repos.d
+
 ADD modmd.patch /
 RUN microdnf install -y patch && microdnf clean all
 RUN patch -p0 < modmd.patch
