@@ -4,6 +4,7 @@ MAINTAINER "James Antill <james.antill@redhat.com>"
 
 ENV LANG=en_US.utf8 LC_ALL=en_US.UTF-8
 
+
 # ADD server.repo /etc/yum.repos.d
 RUN echo "modules=1" >> /etc/yum.repos.d/fedora-modular.repo
 
@@ -18,6 +19,9 @@ RUN echo "exclude = dnf dnf-automatic dnf-conf dnf-yum python3-dnf" >> /etc/yum.
 RUN echo "enabled=0" >> /etc/yum.repos.d/_copr_rpmsoftwaremanagement-dnf-nightly.repo
 ADD _copr_mhatina-dnf.repo /etc/yum.repos.d
 
+# Added dep for python3-dnf: 2017-06-27
+RUN dnf install -y https://kojipkgs.fedoraproject.org//packages/python-smartcols/0.2.0/3.fc26/x86_64/python3-smartcols-0.2.0-3.fc26.x86_64.rpm && dnf clean all
+
 RUN dnf distro-sync -y dnf python3-dnf dnf-conf && dnf clean all
 RUN dnf distro-sync -y && dnf clean all
 
@@ -27,6 +31,9 @@ ADD fedora-modular-nodejs.repo /etc/yum.repos.d
 ADD fedora-compat.repo /etc/yum.repos.d
 ADD fedora-compat-rawhide.repo /etc/yum.repos.d
 ADD fedora-compat-nodejs.repo /etc/yum.repos.d
+
+# To easily switch to compat. repos.
+ADD switch-to-compat.sh /
 
 # Get rid of this from the pure container?
 ADD modmd.patch /
